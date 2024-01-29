@@ -1,0 +1,15 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Single line PowerShell
+    win_shell: Set-Content -Path C:\aap\test.txt -Value 'Hello there. '
+
+ 
+  - name: Copy a single file
+    win_copy:
+      src: files/test.ps1
+      dest: C:\aap\test.ps1
+
+  - name: Run a script
+    win_shell: C:\aap\test.ps1
