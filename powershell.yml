@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Single line PowerShell
+    win_shell: Set-Content -Path C:\aap\test.txt -Value 'Hello there. '
+
+ 
