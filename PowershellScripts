@@ -1,0 +1,13 @@
+---
+- name: using windows powershell
+  hosts: all
+  gather_facts: false
+  tasks:
+   - name: Single line PowerShell
+     win_shell: Set-Content -Path C:\aap\test.txt -Value 'Hello from the other side. It's fapathe running AAP '
+   - name: Copy the Powershell script 
+     win_copy:
+        src: files/hello.ps1
+        dest: C:\aap\hello.ps1     
+   - name: Run the powersher script
+     win_shell:  C:\aap\hello.ps1 >>  C:\aap\output.txt
