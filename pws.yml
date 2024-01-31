@@ -6,3 +6,11 @@
 
   - name: Single line PowerShell
     win_shell: Set-Content -Path C:\aap\test.txt -Value 'Hello there. '
+  - name: Run an executable using win_command
+    win_command: whoami.exe
+
+  - name: Run a cmd command
+    win_command: cmd.exe /c mkdir C:\temp
+
+  - name: Run a vbs script
+    win_command: cscript.exe script.vbs
