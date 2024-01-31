@@ -5,6 +5,6 @@
   tasks:
 
   - name: Single line PowerShell
-    win_shell: Set-Content -Path C:\aap\test.txt -Value 'Hello there. '
+    win_shell: Set-Content -Path C:\Users\lenovo\Documents\aap\test.txt -Value 'Hello there. '
 
  
