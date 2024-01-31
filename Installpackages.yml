@@ -6,7 +6,7 @@
    
       - name: Download the 7-Zip package
         win_get_url:
-            url: https://www.7-zip.org/
+            url: https://www.7-zip.org/7z2301-x64.exe
             dest: C:\temp\
 
       - name: Ensure 7-Zip is installed through win_package
