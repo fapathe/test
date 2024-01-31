@@ -2,20 +2,14 @@
 ---
 - name: Install Kaspersky on Windows Server
   hosts: all
-  become: true
-
   tasks:
-    - name: Download Kaspersky Installer
-      win_get_url:
-        url: "https://www.kaspersky.com/downloads/antivirus"
-        dest: "C:\Temp\kaspersky_installer.exe"
+   
+      - name: Download the 7-Zip package
+        win_get_url:
+            url: https://www.7-zip.org/
+            dest: C:\temp\7z2301-x64.exe
 
-    - name: Install Kaspersky
-      win_shell: |
-        Start-Process -Wait -FilePath "C:\Temp\kaspersky_installer.exe" -ArgumentList "/silent /install"
-      args:
-        executable: powershell.exe
-
-    - name: Clean up temporary files
-      win_shell: Remove-Item -Path "C:\Temp\kaspersky_installer.exe" -Force
-
+      - name: Ensure 7-Zip is installed through win_package
+        win_package:
+          path: C:\7z2301-x64.exe
+          state: present
