@@ -1,18 +1,21 @@
  
 ---
-- name: Install Application on Windows
-  hosts: windows_servers
-  gather_facts: false  # Gathering facts is not needed for Windows
+- name: Install Kaspersky on Windows Server
+  hosts: all
+  become: true
 
   tasks:
-    - name: Install Chocolatey
-      win_shell: |
-        Set-ExecutionPolicy Bypass -Scope Process -Force;
-        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
-        iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    - name: Download Kaspersky Installer
+      win_get_url:
+        url: "https://www.kaspersky.com/downloads/antivirus"
+        dest: "C:\Temp\kaspersky_installer.exe"
 
-    - name: Install the Application using Chocolatey
-      win_chocolatey:
-        name: your_application_name
-        state: present
+    - name: Install Kaspersky
+      win_shell: |
+        Start-Process -Wait -FilePath "C:\Temp\kaspersky_installer.exe" -ArgumentList "/silent /install"
+      args:
+        executable: powershell.exe
+
+    - name: Clean up temporary files
+      win_shell: Remove-Item -Path "C:\Temp\kaspersky_installer.exe" -Force
 
