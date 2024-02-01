@@ -12,7 +12,7 @@
 
     - name: Wait for system to come back up
       ansible.builtin.wait_for_connection:
-        timeout: 300
+        timeout: 600
       when: reboot_result.reboot_required
 
     - name: Display a message after reboot
