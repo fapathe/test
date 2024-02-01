@@ -11,6 +11,6 @@
             dest: C:\temp\
 
       - name: Ensure 7-Zip is installed through win_package
-         win_package:
+        win_package:
             path: C:\temp\
             state: present
