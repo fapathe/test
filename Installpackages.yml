@@ -11,4 +11,6 @@
             dest: C:\temp\
 
       - name: Ensure 7-Zip is installed through win_package
-        win_command: C:\Windows\System32\7z2301-x64.exe /i C:\temp\7z2301-x64.exe /qn /norestart
+         win_package:
+            path: C:\temp\
+            state: present
