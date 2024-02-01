@@ -2,7 +2,7 @@
 ---
 - name: Install Kaspersky on Windows Server
   hosts: all
-  become: yes
+  
   tasks:
    
       - name: Download the 7-Zip package
@@ -11,6 +11,4 @@
             dest: C:\temp\
 
       - name: Ensure 7-Zip is installed through win_package
-        win_package:
-          path: C:\temp\7z2301-x64.exe
-          state: present
+        win_command: C:\Windows\System32\7z2301-x64.exe /i C:\temp\7z2301-x64.exe /qn /norestart
