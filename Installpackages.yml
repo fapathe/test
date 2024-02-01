@@ -2,6 +2,7 @@
 ---
 - name: Install Kaspersky on Windows Server
   hosts: all
+  become: yes
   tasks:
    
       - name: Download the 7-Zip package
