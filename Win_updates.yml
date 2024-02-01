@@ -5,8 +5,7 @@
   tasks:
     - name: Download 7-Zip installer
       win_command: "Invoke-WebRequest -Uri 'https://www.7-zip.org/a/7z2301-x64.exe' -OutFile 'C:\\temp\\7zip.msi'"
-      vars:
-        version: "1900"
+      
 
     - name: Install 7-Zip
       win_command: "Start-Process msiexec.exe -Wait -ArgumentList '/i C:\\temp\\7zip.msi /quiet /norestart'"
