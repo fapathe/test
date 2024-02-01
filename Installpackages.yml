@@ -2,7 +2,7 @@
 ---
 - name: Install 7-Zip on Windows Server
   hosts: all
-  become: true
+  gather_facts: true
 
   tasks:
     - name: Download 7-Zip Installer
