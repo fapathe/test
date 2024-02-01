@@ -1,19 +1,16 @@
 ---
-# Ansible playbook to run Windows Update and restart, if required
-
-
-- name:  Windows Update
+- name: Install 7-Zip on Windows
   hosts: all
-  gather_facts: true
+  gather_facts: false
   tasks:
-   - name: Install all critical and security updates
-     win_updates:
-        category_names:
-          - CriticalUpdates
-          - SecurityUpdates
-        state: installed
-     register: update_result
+    - name: Download 7-Zip installer
+      win_command: "Invoke-WebRequest -Uri 'https://www.7-zip.org/a/7z2301-x64.msi' -OutFile 'C:\\temp\\7zip.msi'"
+      vars:
+        version: "1900"
 
-   - name: Reboot host if required
-     win_reboot:
-     when: update_result.reboot_required
+    - name: Install 7-Zip
+      win_command: "Start-Process msiexec.exe -Wait -ArgumentList '/i C:\\temp\\7zip.msi /quiet /norestart'"
+      become: yes
+
+    - name: Clean up temporary files
+      win_command: "Remove-Item 'C:\\temp\\7zip.msi' -Force"
