@@ -1,7 +1,7 @@
  
 ---
 - name: Install 7-Zip on Windows Server
-  hosts: windows_servers
+  hosts: all
   become: true
 
   tasks:
