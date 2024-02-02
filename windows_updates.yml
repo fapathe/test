@@ -9,7 +9,7 @@
           - SecurityUpdates
           - UpdateRollups
           - CriticalUpdates
-        state: list
+        state: searched
       register: update_result
 
     - name: Install updates if available
