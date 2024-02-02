@@ -8,16 +8,13 @@
         $url = "https://download.kaspersky.com/"  # Replace with the actual download link
         $output = "C:\Temp\kaspersky_installer.exe"  # Change the destination folder and filename as needed
         Invoke-WebRequest -Uri $url -OutFile $output
-      become: yes
-      become_user: Administrator
+     
 
     - name: Install Kaspersky
       win_shell: |
         Start-Process -Wait -FilePath "C:\Temp\kaspersky_installer.exe" -ArgumentList "/silent /install"  # Adjust the installer arguments as needed
-      become: yes
-      become_user: Administrator
+   
 
     - name: Clean up installer
       win_shell: Remove-Item -Path "C:\Temp\kaspersky_installer.exe" -Force
-      become: yes
-      become_user: Administrator
+      
