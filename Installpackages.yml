@@ -1,16 +1,13 @@
 ---
 - name: Install 7-Zip on Windows Server
   hosts: all
-  
+  tasks:  
+      - name: Download the 7-Zip package
+        win_get_url:
+          url: https://www.7-zip.org/a/7z2301-x64.msi
+          dest: C:\temp\7z.msi
 
-  tasks:
-    - name: Download 7-Zip Installer
-      win_get_url:
-        url: "https://www.7-zip.org/a/7z1900-x64.msi"
-        dest: "C:\\Temp\\7z_installer.msi"
-
-    - name: Install 7-Zip
-      win_command: msiexec /i "C:\\Temp\\7z_installer.msi" /quiet
-
-    - name: Clean up temporary files
-      win_shell: Remove-Item -Path "C:\\Temp\\7z_installer.msi" -Force
+      - name: Ensure 7-Zip is installed through win_package
+        win_package:
+           path: C:\temp\7z.msi
+           state: present
