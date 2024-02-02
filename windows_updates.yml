@@ -19,7 +19,7 @@
           - UpdateRollups
           - CriticalUpdates
         state: installed
-      when: update_result.updatable | bool
+      when: update_result.update| bool
 
     - name: Reboot if updates require a reboot
       win_reboot:
