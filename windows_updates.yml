@@ -1,0 +1,26 @@
+---
+- name: Update Windows Servers
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Check for available updates
+      win_updates:
+        category_names:
+          - SecurityUpdates
+          - UpdateRollups
+          - CriticalUpdates
+        state: list
+      register: update_result
+
+    - name: Install updates if available
+      win_updates:
+        category_names:
+          - SecurityUpdates
+          - UpdateRollups
+          - CriticalUpdates
+        state: installed
+      when: update_result.updatable | bool
+
+    - name: Reboot if updates require a reboot
+      win_reboot:
+      when: update_result.reboot_required | bool
