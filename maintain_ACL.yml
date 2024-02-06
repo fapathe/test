@@ -1,0 +1,27 @@
+---
+- name: Maintain Access Control Lists on Windows
+  hosts: windows_servers
+  gather_facts: false
+  tasks:
+    - name: Set ACL on a directory
+      win_acl:
+        path: C:\Path\To\Your\Directory
+        user: username
+        rights:
+          - GenericAll
+        type: allow
+
+    - name: Set ACL on a file
+      win_acl:
+        path: C:\Path\To\Your\File.txt
+        user: username
+        rights:
+          - GenericRead
+          - GenericWrite
+        type: allow
+
+    - name: Remove a specific user from ACL
+      win_acl:
+        path: C:\Path\To\Your\Directory
+        user: username_to_remove
+        state: absent
