@@ -6,7 +6,7 @@
     - name: Set ACL on a directory
       win_acl:
         path: C:\Windows
-        user: username
+        user: fama
         rights:
           - GenericAll
         type: allow
@@ -14,7 +14,7 @@
     - name: Set ACL on a file
       win_acl:
         path: C:\aap\test.txt
-        user: username
+        user: fama
         rights:
           - GenericRead
           - GenericWrite
@@ -23,5 +23,5 @@
     - name: Remove a specific user from ACL
       win_acl:
         path: C:\Windows
-        user: username_to_remove
+        user: fama
         state: absent
