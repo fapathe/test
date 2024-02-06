@@ -1,11 +1,11 @@
 ---
 - name: Maintain Access Control Lists on Windows
-  hosts: windows_servers
+  hosts: all
   gather_facts: false
   tasks:
     - name: Set ACL on a directory
       win_acl:
-        path: C:\Path\To\Your\Directory
+        path: C:\Windows
         user: username
         rights:
           - GenericAll
@@ -13,7 +13,7 @@
 
     - name: Set ACL on a file
       win_acl:
-        path: C:\Path\To\Your\File.txt
+        path: C:\aap\test.txt
         user: username
         rights:
           - GenericRead
@@ -22,6 +22,6 @@
 
     - name: Remove a specific user from ACL
       win_acl:
-        path: C:\Path\To\Your\Directory
+        path: C:\Windows
         user: username_to_remove
         state: absent
