@@ -1,0 +1,34 @@
+---
+- name: Configure IIS on Windows
+  hosts: all
+  gather_facts: false
+  
+
+  tasks:
+    - name: Install IIS
+      win_feature:
+        name: Web-Server
+        state: present
+
+    - name: Ensure IIS service is running
+      win_service:
+        name: W3SVC
+        start_mode: auto
+        state: started
+
+    - name: Allow HTTP traffic through the firewall
+      win_firewall_rule:
+        name: Allow HTTP
+        localport: 80
+        direction: in
+        action: allow
+        profile: any
+        enabled: yes
+
+    - name: Display IIS version information
+      win_shell: Get-ItemProperty HKLM:\SOFTWARE\Microsoft\InetStp\ | Select-Object SetupString
+      register: iis_version
+
+    - name: Print IIS version information
+      debug:
+        var: iis_version.stdout_lines
