@@ -1,0 +1,29 @@
+---
+- name: Manage Windows Service
+  hosts: all
+  gather_facts: true
+  
+
+  tasks:
+    - name: Start the Windows service
+      win_service:
+        name: spooler
+        state: started
+      register: service_result
+      ignore_errors: yes
+
+    - name: Print the service start result
+      debug:
+        var: service_result
+
+    - name: Stop the Windows service
+      win_service:
+        name: spooler
+        state: stopped
+      register: service_result
+      ignore_errors: yes
+
+    - name: Print the service stop result
+      debug:
+        var: service_result
+
