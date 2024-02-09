@@ -1,22 +1,24 @@
 ---
-- name: Install Kaspersky on Windows
+- name: Install packages on systems
   hosts: all
-  gather_facts: false
+  vars:
+    packages:
+      - Putty
+      - Kasperky
+
   tasks:
-    - name: Download Kaspersky installer
-      win_shell: |
-        $url = "https://www.kaspersky.fr/downloads/antivirus"  # Replace with the actual download link
-        $output = "C:\temp\kaspersky_installer.exe"  # Change the destination folder and filename as needed
-        Invoke-WebRequest -Uri $url -OutFile $output
-     
+    - name: Chocolatey is installed
+      win_chocolatey:
+        name: chocolatey
+        state: present
 
-    - name: Install Kaspersky
-      win_shell: |
-        Start-Process -FilePath "C:\temp\kaspersky_installer.exe" -ArgumentList "/silent" -Wait
-      args:
-        executable: powershell.exe
-   
+    - name: Packages are installed
+      win_chocolatey:
+        name: "{{ packages }}"
+        state: present
+        pinned: true
+      register: install_result
 
-    - name: Clean up installer
-      win_shell: Remove-Item -Path "C:\temp\kaspersky_installer.exe" -Force
-      
+    - name: Server is rebooted
+      win_reboot:
+      when: install_result.changed and install_result.rc == 3010
