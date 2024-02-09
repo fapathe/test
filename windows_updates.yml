@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: true
   vars:
-    log_file: C:\Windows\temp\ansible_available_updates.txt
+    log_file: C:\Windows\Temp\ansible_available_updates.txt
   tasks:
     - name: Check for available updates
       win_updates:
