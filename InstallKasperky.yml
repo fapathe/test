@@ -1,7 +1,7 @@
 ---
 - name: Install Kaspersky on Windows
   hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: Download Kaspersky installer
       win_get_url:
