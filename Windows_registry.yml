@@ -9,6 +9,6 @@
     - name: modifying the registry adding name data and type
       win_regedit:
         path: C:\Program Files\AnsibleRegistry
-          name: Ansible
-          data: playbook
-          type: Documents yml
+        name: Ansible
+        data: playbook
+        type: Documents yml
