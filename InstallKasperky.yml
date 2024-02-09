@@ -12,7 +12,9 @@
 
     - name: Install Kaspersky
       win_shell: |
-        Start-Process -Wait -FilePath "C:\temp\kaspersky_installer.exe" -ArgumentList "/silent"  # Adjust the installer arguments as needed
+        Start-Process -FilePath "C:\temp\kaspersky_installer.exe" -ArgumentList "/silent" -Wait
+      args:
+        executable: powershell.exe
    
 
     - name: Clean up installer
