@@ -1,7 +1,7 @@
 ---
 - name: Customize Windows Registry
   hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: create a new Registry 
       win_regedit:
@@ -11,4 +11,4 @@
         path: "HKLM:\\Software\\Example"
         name: Ansible
         data: playbook
-        type: Documents yml
+        type: string
