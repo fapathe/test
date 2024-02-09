@@ -5,16 +5,16 @@
   tasks:
     - name: Download Kaspersky installer
       win_shell: |
-        $url = "https://download.kaspersky.com/"  # Replace with the actual download link
-        $output = "C:\Temp\kaspersky_installer.exe"  # Change the destination folder and filename as needed
+        $url = "https://www.kaspersky.fr/downloads/antivirus"  # Replace with the actual download link
+        $output = "C:\temp\kaspersky_installer.exe"  # Change the destination folder and filename as needed
         Invoke-WebRequest -Uri $url -OutFile $output
      
 
     - name: Install Kaspersky
       win_shell: |
-        Start-Process -Wait -FilePath "C:\Temp\kaspersky_installer.exe" -ArgumentList "/silent /install"  # Adjust the installer arguments as needed
+        Start-Process -Wait -FilePath "C:\temp\kaspersky_installer.exe" -ArgumentList "/silent /install"  # Adjust the installer arguments as needed
    
 
     - name: Clean up installer
-      win_shell: Remove-Item -Path "C:\Temp\kaspersky_installer.exe" -Force
+      win_shell: Remove-Item -Path "C:\temp\kaspersky_installer.exe" -Force
       
