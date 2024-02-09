@@ -1,24 +1,23 @@
 ---
-- name: Install packages on systems
+- name: Install Kaspersky on Windows
   hosts: all
-  vars:
-    packages:
-      - Putty
-      - Kasperky
+  gather_facts: true
+  
 
   tasks:
-    - name: Chocolatey is installed
-      win_chocolatey:
-        name: chocolatey
-        state: present
+    - name: Copy Kaspersky Installer to Windows Server
+      win_copy:
+        src: \\192.168.14.210\Accel_Technologies\Software\kaspersky\startup.exe
+        dest: C:\temp\kaspersky_installer.exe
 
-    - name: Packages are installed
-      win_chocolatey:
-        name: "{{ packages }}"
-        state: present
-        pinned: true
-      register: install_result
+    - name: Install Kaspersky
+      win_shell: |
+        Start-Process -Wait -FilePath "C:\temp\kaspersky_installer.exe" -ArgumentList "/silent"
+      args:
+        executable: powershell.exe
 
-    - name: Server is rebooted
-      win_reboot:
-      when: install_result.changed and install_result.rc == 3010
+    - name: Remove Kaspersky Installer
+      win_file:
+        path: C:\temp\kaspersky_installer.exe
+        state: absent
+
