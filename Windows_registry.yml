@@ -5,10 +5,10 @@
   tasks:
     - name: create a new Registry 
       win_regedit:
-        path: "HKLM:\\Software\\Example"
+        path: "HKEY_USERS:\\Software\\Example"
     - name: modifying the registry adding name data and type
       win_regedit:
-        path: "HKLM:\\Software\\Example"
+        path:  "HKEY_USERS:\\Software\\Example"
         name: Ansible
         data: playbook
         type: string
