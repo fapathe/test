@@ -5,10 +5,10 @@
   tasks:
     - name: create a new Registry 
       win_regedit:
-        path: C:\Program Files\AnsibleRegistry
+        path: "HKLM:\\Software\\Example"
     - name: modifying the registry adding name data and type
       win_regedit:
-        path: C:\Program Files\AnsibleRegistry
+        path: "HKLM:\\Software\\Example"
         name: Ansible
         data: playbook
         type: Documents yml
