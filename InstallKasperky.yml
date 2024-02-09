@@ -10,9 +10,8 @@
 
     - name: Install Kaspersky
       win_shell: |
-        Start-Process -Wait -FilePath "C:\temp\KasperskyInstaller.exe" -ArgumentList "/S"
-      args:
-        executable: powershell.exe
+        Start-Process -FilePath C:\temp\kasperskyInstaller.exe -Wait
+      ignore_errors: yes
 
     - name: Remove downloaded installer
       win_shell: Remove-Item -Path "C:\temp\KasperskyInstaller.exe" -Force
