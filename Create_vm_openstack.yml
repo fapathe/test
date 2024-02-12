@@ -1,0 +1,27 @@
+---
+- name: Create VM on OpenStack
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Authenticate with OpenStack
+      os_auth:
+        cloud: http://102.214.191.201:5000
+      register: auth
+
+    - name: Create OpenStack VM instance
+      os_server:
+        cloud: http://102.214.191.201:5000
+        state: present
+        name: AAPVM
+        flavor: at.tiny
+        image: RHEL8
+        
+        networks:
+          - name: public
+        security_groups:
+          - ALL
+      register: server
+
+    - name: Display VM details
+      debug:
+        var: server
