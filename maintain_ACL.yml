@@ -12,21 +12,20 @@
       win_acl:
         path: C:\Windows
         user: fama
-        rights:
-          - GenericAll
-        type: allow
+        rights: Read
+        type: deny
+        state: present
 
     - name: Set ACL on a file
       win_acl:
         path: C:\aap\test.txt
         user: fama
-        rights:
-          - GenericRead
-          - GenericWrite
+        rights: FullControl
         type: allow
+        state: present
 
-    - name: Remove a specific user from ACL
-      win_acl:
-        path: C:\Windows
-        user: fama
-        state: absent
+    #- name: Remove a specific user from ACL 
+     # win_acl:
+       # path: C:\Windows
+       # user: fama
+       # state: absent
