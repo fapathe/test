@@ -1,0 +1,26 @@
+---
+- name: Create VM on OpenStack
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Create VM
+      os_server:
+        state: present
+        cloud: overcloud
+        auth:
+          auth_url: http://102.214.191.201:5000
+
+          username: admin
+          password: VK6NK0z4iWP1lJu50f1OgCOG8
+
+          project_name: admin
+        name: AAP_VM
+        image: RHEL8
+        flavor:  at.tiny 
+        network: public
+        
+      register: server_info
+
+    - name: Output VM information
+      debug:
+        var: server_info
