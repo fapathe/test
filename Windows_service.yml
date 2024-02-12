@@ -5,9 +5,9 @@
   
 
   tasks:
-    - name: Start the Windows service
+    - name: Start wuauserv the Windows service
       win_service:
-        name: spooler
+        name: wuauserv
         state: started
       register: service_result
       ignore_errors: yes
@@ -16,7 +16,7 @@
       debug:
         var: service_result
 
-    - name: Stop the Windows service
+    - name: Stop the spooler Windows service
       win_service:
         name: spooler
         state: stopped
