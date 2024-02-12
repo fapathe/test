@@ -7,7 +7,7 @@
       win_user:
          name: fama1
          password: fama
-         group: standard
+         groups: standard
          state: present
     - name: Set ACL on a directory
       win_acl:
