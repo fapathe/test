@@ -7,14 +7,14 @@
       win_user:
          name: fama1
          password: fama
-         groups: standard
+         groups: Administrateur
          state: present
     - name: Set ACL on a directory
       win_acl:
         path: C:\Windows
         user: fama1
         rights: Read
-        type: FullControl
+        type: deny
         state: present
 
     - name: Set ACL on a file
