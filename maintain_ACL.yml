@@ -5,9 +5,8 @@
   tasks:
     - name: Create a user named fama
       win_user:
-         name: fama1
+         name: fama
          password: fama
-         groups: Administrateur
          state: present
     - name: Set ACL on a directory
       win_acl:
@@ -20,7 +19,7 @@
     - name: Set ACL on a file
       win_acl:
         path: C:\aap\test.txt
-        user: fama1
+        user: fama
         rights: FullControl
         type: allow
         state: present
