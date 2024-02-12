@@ -3,6 +3,11 @@
   hosts: all
   gather_facts: false
   tasks:
+    - name: Create a user named fama
+      win_user:
+         name: fama
+         password: fama
+         state: present
     - name: Set ACL on a directory
       win_acl:
         path: C:\Windows
