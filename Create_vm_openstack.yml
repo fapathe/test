@@ -4,7 +4,7 @@
   gather_facts: true
   tasks:
     - name: Authenticate with OpenStack
-      os_auth:
+      os_auth_url:
         cloud: http://102.214.191.201:5000
       register: auth
 
