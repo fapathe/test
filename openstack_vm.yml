@@ -4,7 +4,7 @@
   gather_facts: true
   tasks:
     - name: Create VM
-      os_server:
+      openstack.cloud.os_server:
         state: present
         cloud: overcloud
         auth:
