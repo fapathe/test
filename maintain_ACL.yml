@@ -1,17 +1,17 @@
 ---
 - name: Maintain Access Control Lists on Windows
   hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: Create a user named fama
       win_user:
-         name: fama
-         password: fama
+         name: abdou
+         password: abdou
          state: present
     - name: Set ACL on a directory
       win_acl:
         path: C:\Windows
-        user: fama1
+        user: abdou
         rights: Read
         type: deny
         state: present
@@ -19,7 +19,7 @@
     - name: Set ACL on a file
       win_acl:
         path: C:\aap\test.txt
-        user: fama
+        user: abdou
         rights: FullControl
         type: allow
         state: present
