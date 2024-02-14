@@ -12,16 +12,16 @@
       win_acl:
         path: C:\Windows
         user: abdou
-        rights: Read
-        type: deny
+        rights: FullControl
+        type: allow
         state: present
 
     - name: Set ACL on a file
       win_acl:
         path: C:\aap\test.txt
         user: abdou
-        rights: FullControl
-        type: allow
+        rights: Read
+        type: deny
         state: present
 
     #- name: Remove a specific user from ACL 
