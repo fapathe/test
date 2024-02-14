@@ -5,7 +5,7 @@
   tasks:
    - name: Single line PowerShell
      win_shell: Set-Content -Path C:\aap\test.txt -Value 'Hello from the other side'
-   - name: Copy the Powershell script 
+ 
        
    - name: Run the powersher script
      win_shell:  C:\aap\hello.ps1 >>  C:\aap\output.txt
