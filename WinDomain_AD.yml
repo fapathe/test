@@ -1,51 +1,23 @@
 ---
-- name: Configure Windows Domain and Active Directory
+- name: Add Server to Domain
   hosts: all
-  gather_facts: false
-  
+  gather_facts: true
   tasks:
-    - name: Install AD DS role
-      win_feature:
-        name: AD-Domain-Services
-        state: present
+    - name: dns client
+      win_dns_client:
+        adapter_names: '*'
+        ipv4_addresses: 192.168.14.140
 
-    - name: Install DNS role
-      win_feature:
-        name: DNS
-        state: present
+    - name: Join server to domain
+      win_domain_membership:
+        dns_domain_name: TEST
+        hostname: "{{ ansible_hostname }}"
+        domain_admin_user: Administrateur
+        domain_admin_password: Passer@123
+      register: domain_membership_result
 
     - name: Reboot if required
+      when: domain_membership_result.reboot_required
       win_reboot:
-      when: "'Reboot Required' in result.stdout"
 
-    - name: Configure Active Directory
-      win_domain:
-        dns_domain_name: "{{ domain_name }}"
-        domain_admin_user: "{{ admin_user }}"
-        domain_admin_password: "{{ admin_password }}"
-        state: domain
-
-    - name: Reboot if required after domain join
-      win_reboot:
-      when: "'Reboot Required' in result.stdout"
-
-    - name: Add a user to Active Directory
-      win_user:
-        name: "{{ ad_user }}"
-        password: "{{ ad_user_password }}"
-        state: present
-        groups:
-          - "Domain Admins"
-
-    - name: Configure DNS client settings
-      win_dns_client:
-        adapter_names:
-          - "{{ ansible_default_ipv4.interface }}"
-        dns_servers:
-          - "{{ domain_controller_ip }}"
-        register: dns_result
-
-    - name: Reboot if DNS changes require a reboot
-      win_reboot:
-      when: "'Reboot Required' in dns_result.stdout"
 
