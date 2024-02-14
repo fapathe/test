@@ -14,6 +14,7 @@
         hostname: "{{ ansible_hostname }}"
         domain_admin_user: Administrateur
         domain_admin_password: Passer@123
+        state: domain
       register: domain_membership_result
 
     - name: Reboot if required
