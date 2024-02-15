@@ -2,6 +2,9 @@
 - name: Create VM on OpenStack
   hosts: all
   gather_facts: true
+  collections:
+     - openstack.cloud
+
   tasks:
     - name: Authenticate with OpenStack
       os_auth_url:
