@@ -2,6 +2,7 @@
 - name: Update Windows Servers
   hosts: all
   gather_facts: true
+  ignore_errors: true
   vars:
     log_file: C:\Windows\Temp\ansible_available_updates.txt
   tasks:
