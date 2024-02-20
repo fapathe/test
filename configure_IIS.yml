@@ -2,7 +2,7 @@
 - name: Configure IIS on Windows
   hosts: all
   gather_facts: false
-  ignore_errors: true
+  
   
 
   tasks:
@@ -17,14 +17,15 @@
         start_mode: auto
         state: started
 
-    - name: Allow HTTP traffic through the firewall
-      win_firewall_rule:
-        name: Allow HTTP
-        localport: 80
-        direction: in
-        action: allow
-        profile: any
-        enabled: yes
+  
+#  - name: Allow HTTP traffic through the firewall
+#      win_firewall_rule:
+ #       name: Allow HTTP
+  #      localport: 80
+   #     direction: in
+    #    action: allow
+     #   profile: any
+      #  enabled: yes
 
     - name: Display IIS version information
       win_shell: Get-ItemProperty HKLM:\SOFTWARE\Microsoft\InetStp\ | Select-Object SetupString
