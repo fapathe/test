@@ -2,6 +2,7 @@
 - name: Configure IIS on Windows
   hosts: all
   gather_facts: false
+  ignore_errors: true
   
 
   tasks:
