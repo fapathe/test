@@ -4,7 +4,7 @@
   gather_facts: true
   tasks:
    - name: Single line PowerShell
-     win_shell: Set-Content -Path C:\aap\test.txt -Value 'Hello from the other side'
+     win_shell: Set-Content -Path C:\aap\test.txt -Value 'Hello from the other side '
  
        
    - name: Run the powersher script
