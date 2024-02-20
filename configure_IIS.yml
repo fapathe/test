@@ -15,7 +15,7 @@
        ansible.windows.win_copy:
           src: files/index.html
           dest: C:\\inetpub\\wwwroot\index.html
-      notify: Restart IIS service 
+       notify: Restart IIS service 
 
   handlers:
     - 
