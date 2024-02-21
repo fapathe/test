@@ -3,10 +3,10 @@
   hosts: all
   gather_facts: true
   tasks:
-    - name: Create a user named fama
+    - name: Create a user named Abdou
       win_user:
          name: abdou
-         password: Abdou1310
+         password: Mouhamed
          state: present
     - name: Set ACL on a directory
       win_acl:
