@@ -6,7 +6,7 @@
     - name: Create a user named Abdou
       win_user:
          name: abdou
-         password: Abdou1*#
+         password: ;LFN=(wXJiY81!`s)F2/
          state: present
     - name: Set ACL on a directory
       win_acl:
