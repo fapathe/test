@@ -23,6 +23,10 @@
           - /install
           - /passive
           - /norestart
+         register: result
+
+    - debug:
+         var: result
 
    # - name: Install Kaspersky
      # win_shell: |
