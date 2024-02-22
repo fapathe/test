@@ -13,7 +13,7 @@
     - 
        name: Copy index test page
        ansible.windows.win_copy:
-          src: files/index.html
+          src: ~/files/index.html
           dest: C:\\inetpub\\wwwroot\index.html
        notify: Restart IIS service 
 
