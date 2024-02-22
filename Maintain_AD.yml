@@ -5,7 +5,7 @@
   tasks:
     - name: Create AD User
       win_domain_user:
-        domain_account: "lab.local"
+        domain_account: Administrateur
         username: fama
         password: Passer@123
         state: present
