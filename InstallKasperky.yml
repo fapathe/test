@@ -23,7 +23,7 @@
           - /install
           - /passive
           - /norestart
-         register: result
+        register: result
 
     - debug:
          var: result
