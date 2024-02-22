@@ -10,16 +10,16 @@
         state: present
         restart: yes
 
-    - 
-       name: Copy index test page
-       ansible.windows.win_copy:
-          src: files/index.html
-          dest: C:\\inetpub\\wwwroot\index.html
-       notify: Restart IIS service 
+   # - 
+     #  name: Copy index test page
+       #.windows.win_copy:
+          #src: files/index.html
+          #dest: C:\\inetpub\\wwwroot\index.html
+      # notify: Restart IIS service 
 
-  handlers:
-    - 
-       name: Restart IIS service
-       ansible.windows.win_service:
-        name: iis
-        state: restarted
+  #handlers:
+    #- 
+      # name: Restart IIS service
+       #ansible.windows.win_service:
+        #name: iis
+        #state: restarted
