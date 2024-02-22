@@ -9,11 +9,18 @@
         dest: C:\temp\KasperskyInstaller.exe
 
     - name: Install Kaspersky
-      win_shell: |
-        Start-Process -FilePath C:\temp\kasperskyInstaller.exe -Wait
-      ignore_errors: yes
+      win_package:
+       path: C:\temp\KasperskyInstaller.exe
+      # product_id: 7-Zip
+       #arguments: /S
+       state: present
 
-    - name: Remove downloaded installer
-      win_shell: Remove-Item -Path "C:\temp\KasperskyInstaller.exe" -Force
-      args:
-        executable: powershell.exe
+   # - name: Install Kaspersky
+     # win_shell: |
+      #  Start-Process -FilePath C:\temp\kasperskyInstaller.exe -Wait
+      #ignore_errors: yes
+
+    #- name: Remove downloaded installer
+     # win_shell: Remove-Item -Path "C:\temp\KasperskyInstaller.exe" -Force
+      #args:
+      #  executable: powershell.exe
