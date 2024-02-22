@@ -8,20 +8,16 @@
         url: "https://products.s.kaspersky-labs.com/homeuser/Kaspersky4Win2021/21.16.6.467/french-0.194.0/3831303135387c44454c7c31_35811/kaspersky4win202121.16.6.467fr_35811.exe"
         dest: C:\temp\KasperskyInstaller.exe
 
-    #- name: Install Kaspersky
-     # win_package:
-      # path: C:\temp\KasperskyInstaller.exe
-      # product_id: 7-Zip
-       #arguments: /S
-       #state: present
+    - name: Install Kaspersky
+      win_package:
+       path: C:\temp\KasperskyInstaller.exe
+       #product_id: 7-Zip
+       arguments: /S
+       state: present
     
-    - name: Install Kashperky
-      ansible.windows.win_package:
-        path: "https://products.s.kaspersky-labs.com/homeuser/Kaspersky4Win2021/21.16.6.467/french-0.194.0/3831303135387c44454c7c31_35811/kaspersky4win202121.16.6.467fr_35811.exe"
-        
-        arguments:
-          - /install
-          - /passive
+   # - name: Install Kashperky
+    #  ansible.windows.win_package:
+       #
          
    # - name: Install Kaspersky
      # win_shell: |
