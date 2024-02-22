@@ -8,7 +8,7 @@
     - name: Start wuauserv the Windows service
       win_service:
         name: wuauserv
-        state: started
+        state: stopped
       register: service_result
       ignore_errors: yes
 
@@ -19,7 +19,7 @@
     - name: Stop the spooler Windows service
       win_service:
         name: spooler
-        state: stopped
+        state: started
       register: service_result
       ignore_errors: yes
 
