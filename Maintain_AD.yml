@@ -1,46 +1,13 @@
 ---
-- name: Manage Active Directory
-  hosts: your_ad_server
+- name: Add User to Active Directory
+  hosts: all
   become: yes
   tasks:
-    - name: Install required PowerShell module for Active Directory
-      win_shell: Install-Module -Name ActiveDirectory -Force -AllowClobber
-
-    - name: Ensure DNS settings are configured
-      win_dns_client:
-        ipv4_addresses:
-          - "AD_SERVER_IP"
-        register_connection: yes
-
-    - name: Configure AD settings
-      win_domain:
-        dns_domain_name: "yourdomain.com"
-        domain_admin_user: "Administrator"
-        domain_admin_password: "your_admin_password"
-        state: "domain_present"
-
-    - name: Add users to AD
-      win_user:
-        name: "{{ item.name }}"
-        password: "{{ item.password }}"
+    - name: Create AD User
+      win_domain_user:
+        domain_account: "lab.local"
+        username: fama
+        password: Passer@123
         state: present
-      with_items:
-        - { name: "user1", password: "password1" }
-        - { name: "user2", password: "password2" }
-
-    - name: Add groups to AD
-      win_group:
-        name: "{{ item }}"
-        state: present
-      with_items:
-        - "Group1"
-        - "Group2"
-
-    - name: Add users to groups
-      win_group_membership:
-        name: "{{ item.group }}"
-        members: "{{ item.users }}"
-        state: present
-      with_items:
-        - { group: "Group1", users: ["user1", "user2"] }
-        - { group: "Group2", users: ["user1"] }
+        groups:
+          - developers
