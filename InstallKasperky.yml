@@ -22,12 +22,7 @@
         arguments:
           - /install
           - /passive
-          - /norestart
-        register: result
-
-    - debug:
-         var: result
-
+         
    # - name: Install Kaspersky
      # win_shell: |
       #  Start-Process -FilePath C:\temp\kasperskyInstaller.exe -Wait
