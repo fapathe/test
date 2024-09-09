@@ -5,4 +5,4 @@
   tasks:
     - name: Show the IP address of the host
       debug:
-        msg: "The IP address of {{ ansible_host }} is "
+        msg: "The IP address of {{ ansible_host }} is {{ ansible_eth0.ipv4.address }} "
