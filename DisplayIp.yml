@@ -1,0 +1,8 @@
+---
+- name: Display the IP address of the host
+  hosts: localhost
+  gather_facts: yes
+  tasks:
+    - name: Show the IP address of the host
+      debug:
+        msg: "The IP address of {{ ansible_host }} is {{ ansible_default_ipv4.address }}"
