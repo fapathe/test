@@ -8,11 +8,11 @@
         name:
           - httpd
           - firewalld
-        state: absent
+        state: present
 
     - name: test html page is installed
       ansible.builtin.copy:
-        content: "Welcome BDK Team we hope you've enjoyed the presentation"
+        content: "Welcome BDK TEAM we hope you've enjoyed the presentation"
         dest: /var/www/html/index.html
 
     - name: firewalld enabled and running
