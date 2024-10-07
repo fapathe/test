@@ -12,7 +12,7 @@
 
     - name: test html page is installed
       ansible.builtin.copy:
-        content: "Welcome BDK Team we hope you enjoyed the presentation1"
+        content: "Welcome BDK Team we hope you've enjoyed the presentation1"
         dest: /var/www/html/index.html
 
     - name: firewalld enabled and running
