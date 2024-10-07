@@ -1,8 +1,39 @@
 ---
-- name: Hello World!
+- name: Enable intranet services
   hosts: all
- 
+  become: true
   tasks:
- 
-  - name: Hello World!
-    shell: echo "Hi! Tower is working."
+    - name: latest version of httpd and firewalld installed
+      ansible.builtin.yum:
+        name:
+          - httpd
+          - firewalld
+        state: latest
+
+    - name: test html page is installed
+      ansible.builtin.copy:
+        content: "Welcome BDK Team"
+        dest: /var/www/html/index.html
+
+    - name: firewalld enabled and running
+      ansible.builtin.service:
+        name: firewalld
+        enabled: true
+        state: started
+
+    - name: firewalld permits http service
+      ansible.posix.firewalld:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: true
+
+    - name: httpd enabled and running
+      ansible.builtin.service:
+        name: httpd
+        enabled: true
+        state: started
+
+
+
+
