@@ -1,0 +1,66 @@
+---
+- name: Renew OpenShift Certificates
+  hosts: masters
+  become: yes
+  tasks:
+
+    - name: Backup current certificates
+      shell: cp /etc/origin/master/master.server.crt /etc/origin/master/master.server.crt.bak
+      ignore_errors: yes
+      tags:
+        - backup
+
+    - name: Backup current key
+      shell: cp /etc/origin/master/master.server.key /etc/origin/master/master.server.key.bak
+      ignore_errors: yes
+      tags:
+        - backup
+
+    - name: Regenerate master certificates
+      shell: >
+        /usr/local/bin/openshift admin ca create-master-certs
+        --cert-dir=/etc/origin/master
+        --hostnames="{{ ansible_fqdn }},{{ inventory_hostname }}"
+        --master="https://{{ ansible_fqdn }}:8443"
+        --public-master="https://{{ ansible_fqdn }}:8443"
+      tags:
+        - generate_certs
+
+    - name: Approve pending CSRs (if required)
+      shell: |
+        oc adm certificate approve $(oc get csr --no-headers | awk '{ print $1 }')
+      ignore_errors: yes
+      tags:
+        - approve_csr
+
+    - name: Restart master API service
+      systemd:
+        name: atomic-openshift-master-api
+        state: restarted
+      tags:
+        - restart_services
+
+    - name: Restart master controllers service
+      systemd:
+        name: atomic-openshift-master-controllers
+        state: restarted
+      tags:
+        - restart_services
+
+    - name: Restart OpenShift nodes
+      systemd:
+        name: atomic-openshift-node
+        state: restarted
+      tags:
+        - restart_services
+
+    - name: Verify that the services are running
+      systemd:
+        name: "{{ item }}"
+        state: started
+      loop:
+        - atomic-openshift-master-api
+        - atomic-openshift-master-controllers
+        - atomic-openshift-node
+      tags:
+        - verify
