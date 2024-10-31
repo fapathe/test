@@ -8,7 +8,7 @@
         name:
           - httpd
           - firewalld
-        state: present
+        state: abscent
 
     - name: test html page is installed
       ansible.builtin.copy:
