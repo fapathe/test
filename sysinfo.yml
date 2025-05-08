@@ -25,4 +25,4 @@
 
     - name: Afficher l'adresse IP principale
       debug:
-        msg: "Adresse IP : {{ ansible_default_ipv4.address }}"
+        msg: "Adresse IP : {{ ansible_all_ipv4_addresses[0] | default('IP non trouvée') }}"
