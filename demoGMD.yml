@@ -1,1 +1,22 @@
+---
+- name: Update security packages
+  hosts: all
+  become: yes
+  tasks:
+    - name: Check for available security updates
+      yum:
+        security: yes
+        list: updates
+      register: updates
+
+    - name: Install security updates
+      yum:
+        name: '*'
+        state: latest
+        security: yes
+
+    - name: Reboot if kernel updated
+      reboot:
+        msg: "Rebooting after kernel security update"
+      when: "'kernel' in updates.results | map(attribute='name') | list"
 
