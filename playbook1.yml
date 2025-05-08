@@ -1,0 +1,6 @@
+---
+- name: Vérifier la connectivité des hôtes
+  hosts: all
+  tasks:
+    - name: Ping
+      ping:
