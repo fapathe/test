@@ -1,22 +1,21 @@
 ---
-- name: Update security packages
+- name: Create a file and write content to it
   hosts: all
   become: yes
   tasks:
-    - name: Check for available security updates
-      yum:
-        security: yes
-        list: updates
-      register: updates
+    - name: Ensure the file exists
+      file:
+        path: /tmp/info_gmd.txt
+        state: touch
+        mode: '0644'
 
-    - name: Install security updates
-      yum:
-        name: '*'
-        state: latest
-        security: yes
-
-    - name: Reboot if kernel updated
-      reboot:
-        msg: "Rebooting after kernel security update"
-      when: "'kernel' in updates.results | map(attribute='name') | list"
-
+    - name: Write content to the file (overwrite)
+      copy:
+        content: |
+          Grand Moulin de Dakar - Serveur configuré automatiquement
+          Date de configuration : {{ ansible_date_time.date }}
+          Hôte : {{ inventory_hostname }}
+        dest: /tmp/info_gmd.txt
+        owner: base
+        group: base
+        mode: '0644'
