@@ -23,6 +23,4 @@
       debug:
         msg: "Mémoire RAM : {{ ansible_memtotal_mb }} Mo"
 
-    - name: Afficher l'adresse IP principale
-      debug:
-        msg: "Adresse IP : {{ ansible_all_ipv4_addresses[0] | default('IP non trouvée') }}"
+   
