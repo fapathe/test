@@ -8,5 +8,5 @@
         name:
           - htop
           - vim
-          - git
-        state: present
+          
+        state: absent
