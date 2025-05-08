@@ -1,0 +1,28 @@
+---
+- name: Afficher les informations système - Grand Moulin de Dakar
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Afficher le nom d'hôte
+      debug:
+        msg: "Nom d'hôte : {{ ansible_hostname }}"
+
+    - name: Afficher la distribution Linux
+      debug:
+        msg: "OS : {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+    - name: Afficher l'architecture
+      debug:
+        msg: "Architecture : {{ ansible_architecture }}"
+
+    - name: Afficher le nombre de CPU
+      debug:
+        msg: "CPU : {{ ansible_processor_cores }} coeurs"
+
+    - name: Afficher la mémoire RAM
+      debug:
+        msg: "Mémoire RAM : {{ ansible_memtotal_mb }} Mo"
+
+    - name: Afficher l'adresse IP principale
+      debug:
+        msg: "Adresse IP : {{ ansible_default_ipv4.address }}"
