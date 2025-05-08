@@ -1,19 +1,11 @@
 ---
-- name: Create a file and write content to it
+- name: Créer un fichier et ajouter du contenu
   hosts: all
   become: yes
   tasks:
-    - name: Ensure the file exists
-      command: echo "Hi Fapathe Fall" >> /home/base/info_gmd.txt
-     # file:
-     #   path: /home/base/info_gmd.txt
-      #  state: touch
-      
-    - name: Write content to the file (overwrite)
-      copy:
-        content: |
-          Grand Moulin de Dakar - Serveur configuré automatiquement
-          Date de configuration : {{ ansible_date_time.date }}
-          Hôte : {{ inventory_hostname }}
-        dest: /home/base/info_gmd.txt
-        
+    - name: Ajouter une ligne dans le fichier /tmp/infos.txt
+      lineinfile:
+        path: /tmp/infos.txt
+        line: "GMD automatisé avec Ansible le {{ ansible_date_time.iso8601 }}"
+        create: yes
+
