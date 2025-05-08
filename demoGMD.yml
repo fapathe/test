@@ -8,14 +8,5 @@
      # file:
      #   path: /home/base/info_gmd.txt
       #  state: touch
-        
-
-    - name: Write content to the file (overwrite)
-      copy:
-        content: |
-          Grand Moulin de Dakar - Serveur configuré automatiquement
-          Date de configuration : {{ ansible_date_time.date }}
-          Hôte : {{ inventory_hostname }}
-        dest: /home/base/info_gmd.txt
-        
+      
        
