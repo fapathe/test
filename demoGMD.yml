@@ -5,9 +5,9 @@
   tasks:
     - name: Ensure the file exists
       file:
-        path: /tmp/info_gmd.txt
+        path: /home/base/info_gmd.txt
         state: touch
-        mode: '0644'
+        
 
     - name: Write content to the file (overwrite)
       copy:
@@ -15,7 +15,6 @@
           Grand Moulin de Dakar - Serveur configuré automatiquement
           Date de configuration : {{ ansible_date_time.date }}
           Hôte : {{ inventory_hostname }}
-        dest: /tmp/info_gmd.txt
-        owner: base
-        group: base
-        mode: '0644'
+        dest: /home/base/info_gmd.txt
+        
+       
