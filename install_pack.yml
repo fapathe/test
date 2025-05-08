@@ -1,0 +1,12 @@
+---
+- name: Installer 3 paquets sur les hôtes cibles
+  hosts: all
+  become: yes
+  tasks:
+    - name: Installer les paquets htop, vim et git
+      package:
+        name:
+          - htop
+          - vim
+          - git
+        state: present
