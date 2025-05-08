@@ -4,9 +4,10 @@
   become: yes
   tasks:
     - name: Ensure the file exists
-      file:
-        path: /home/base/info_gmd.txt
-        state: touch
+      cmd: echo "Hi Fapathe Fall" >> /home/base/info_gmd.txt
+     # file:
+     #   path: /home/base/info_gmd.txt
+      #  state: touch
         
 
     - name: Write content to the file (overwrite)
