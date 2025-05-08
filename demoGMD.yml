@@ -4,7 +4,7 @@
   become: yes
   tasks:
     - name: Ensure the file exists
-      cmd: echo "Hi Fapathe Fall" >> /home/base/info_gmd.txt
+      command: echo "Hi Fapathe Fall" >> /home/base/info_gmd.txt
      # file:
      #   path: /home/base/info_gmd.txt
       #  state: touch
