@@ -1,0 +1,9 @@
+---
+- name: Ajouter du contenu dans le fichier info.txt
+  hosts: all
+  become: yes
+  tasks:
+    - name: Écrire une ligne dans le fichier
+      lineinfile:
+        path: /tmp/gmd/info.txt
+        line: "Automatisé par Ansible AAP le {{ ansible_date_time.date }}"
