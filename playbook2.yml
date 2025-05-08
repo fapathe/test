@@ -1,0 +1,10 @@
+---
+- name: Créer le répertoire /tmp/gmd
+  hosts: all
+  become: yes
+  tasks:
+    - name: Créer le dossier /tmp/gmd
+      file:
+        path: /tmp/gmd
+        state: directory
+        mode: '0755'
